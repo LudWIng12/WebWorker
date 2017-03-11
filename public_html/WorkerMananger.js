@@ -1,17 +1,29 @@
+window.addEventListener("load",init,false);
+
 function init(){
     counter = 1;
 }
 
 function startWorker(){
+    
+    
+    var worker = new Worker("Worker.js");
+    worker.addEventListener("message", updates, false);
+    worker.postMessage(counter);
+    counter++;
+    
+}
+
+function createProgress(){
     var workerDesk = document.getElementById("workerDesk");
     var workerName = "progress-"+counter;
-    var titleName = "title-" +counter;
+    var labelID = "title-" +counter;
     
     var worker = document.createElement("div");
     worker.setAttribute("class", "worker");
     
     var title = document.createElement("p");
-    title.setAttribute("id",titleName);
+    title.setAttribute("id",labelID);
     title.innerHTML = workerName + " (0%)";
     worker.appendChild(title);
     
@@ -22,14 +34,7 @@ function startWorker(){
     progress.setAttribute("max","100");
     worker.appendChild(progress);
     
-    
     workerDesk.appendChild(worker);
-    
-    var worker = new Worker("Worker.js");
-    worker.addEventListener("message", updates, false);
-    worker.postMessage(counter);
-    counter++;
-    
 }
 
 function updates(e){
@@ -41,6 +46,3 @@ function updates(e){
     title.innerHTML = "Worker-" + response.workerName + " ("+response.progress+"%)";
     
 }
-
-
-window.addEventListener("load",init,false);
