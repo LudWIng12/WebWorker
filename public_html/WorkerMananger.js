@@ -5,13 +5,12 @@ function init(){
 }
 
 function startWorker(){
-    
+    createProgress();
     
     var worker = new Worker("Worker.js");
     worker.addEventListener("message", updates, false);
     worker.postMessage(counter);
     counter++;
-    
 }
 
 function createProgress(){
@@ -44,5 +43,4 @@ function updates(e){
     
     var title = document.getElementById("title-" + response.workerName);
     title.innerHTML = "Worker-" + response.workerName + " ("+response.progress+"%)";
-    
 }
