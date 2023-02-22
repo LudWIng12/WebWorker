@@ -1,5 +1,5 @@
 body{
-    background-color: #fafafa;
+    background: radial-gradient(circle, #a8e9f4, #8cb8e4, #cf9eed);
 }
 #workerDesk{
     position: relative;
@@ -14,12 +14,22 @@ input{
     display: inline-block;
     margin: 10px 10px;
     padding: 10px 15px;
-    border: 2px solid #cacaca;
+    border: 2px solid #ab05c1;
     width: 30%;
     box-sizing: border-box;
     border-radius: 5px;
     box-shadow:  0 0 5px rgba(0,0,0,0.3);
+    background-color: #23a699;
 }
 .worker > p{
+    font-weight: bold;
+    margin-bottom: 5px;
     margin: 0px;
+    color: #333;
 }
+
+.worker progress {
+    width: 100%;
+    height: 20px;
+    background-color: #c20ae3;
+  }
